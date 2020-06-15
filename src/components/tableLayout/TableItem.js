@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 
 function TableItem(props) {
-  const { company, project, contactPerson, contactPhone, date, time, impression } = props;
+  const { company, project, contactPerson, contactPhone, date, time, impression } = props.interview;
+  console.log(props);
+
   return (
     <Fragment>
       <div className='col-2'>

@@ -3,12 +3,15 @@ import TableHeader from './TableHeader';
 import TableContent from './TableContent';
 
 function TableList(props) {
-  const { interviews, formIsOpen } = props;
+  const { list, formIsOpen } = props;
+
   return (
     <div className='container fluid'>
       <TableHeader />
-      <TableContent interviews={interviews} />
-      {!formIsOpen && <div className='col-12'>There is no any data in your database</div>}
+      {list && list.length
+      ? <TableContent list={list} />
+      : !formIsOpen && <div className='col-12'>There is no any data in your database</div>
+      }
     </div>
   );
 }

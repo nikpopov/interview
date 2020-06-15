@@ -13,6 +13,7 @@ class FormInput extends React.Component {
   }
 
   sendForm = () => {
+    this.props.appendRecord(this.state);
     setTimeout(() => this.setState({}), 200);
   }
 
@@ -20,13 +21,13 @@ class FormInput extends React.Component {
     return (
       <div className='container'>
         <div className='col-12'>
-          <form onSubmit={() => this.props.appendRecord(this.state)}>
+          <form>
             <div className='form-group row'>
-              <label htmlFor='inputCompany' className='col-sm-2 col-form-label'>Company</label>
+              <label htmlFor='company' className='col-sm-2 col-form-label'>Company</label>
               <div className='col-sm-10'>
                 <input
-                  id='inputCompany'
-                  name='inputCompany'
+                  id='company'
+                  name='company'
                   type='text'
                   className='form-control'
                   onChange={this.onValueChange}
@@ -34,11 +35,11 @@ class FormInput extends React.Component {
               </div>
             </div>
             <div className='form-group row'>
-              <label htmlFor='inputProject' className='col-sm-2 col-form-label'>Project Description</label>
+              <label htmlFor='project' className='col-sm-2 col-form-label'>Project Description</label>
               <div className='col-sm-10'>
                 <input
-                  id='inputProject'
-                  name='inputProject'
+                  id='project'
+                  name='project'
                   type='text'
                   className='form-control'
                   onChange={this.onValueChange}
@@ -46,11 +47,11 @@ class FormInput extends React.Component {
               </div>
             </div>
             <div className='form-group row'>
-              <label htmlFor='inputPerson' className='col-sm-2 col-form-label'>Contact Person</label>
+              <label htmlFor='contactPerson' className='col-sm-2 col-form-label'>Contact Person</label>
               <div className='col-sm-10'>
                 <input
-                  id='inputPerson'
-                  name='inputPerson'
+                  id='contactPerson'
+                  name='contactPerson'
                   type='text'
                   className='form-control'
                   onChange={this.onValueChange}
@@ -58,11 +59,11 @@ class FormInput extends React.Component {
               </div>
             </div>
             <div className='form-group row'>
-              <label htmlFor='inputPhone' className='col-sm-2 col-form-label'>Contact phone</label>
+              <label htmlFor='contactPhone' className='col-sm-2 col-form-label'>Contact phone</label>
               <div className='col-sm-10'>
                 <input
-                  id='inputPhone'
-                  name='inputPhone'
+                  id='contactPhone'
+                  name='contactPhone'
                   type='text'
                   className='form-control'
                   onChange={this.onValueChange}
@@ -70,11 +71,11 @@ class FormInput extends React.Component {
               </div>
             </div>
             <div className='form-group row'>
-              <label htmlFor='inputDate' className='col-sm-2 col-form-label'>Interview Date</label>
+              <label htmlFor='date' className='col-sm-2 col-form-label'>Interview Date</label>
               <div className='col-sm-10'>
                 <input
-                  id='inputDate'
-                  name='inputDate'
+                  id='date'
+                  name='date'
                   type='text'
                   className='form-control'
                   onChange={this.onValueChange}
@@ -82,11 +83,11 @@ class FormInput extends React.Component {
               </div>
             </div>
             <div className='form-group row'>
-              <label htmlFor='inputTime' className='col-sm-2 col-form-label'>Interview Time</label>
+              <label htmlFor='time' className='col-sm-2 col-form-label'>Interview Time</label>
               <div className='col-sm-10'>
                 <input
-                  id='inputTime'
-                  name='inputTime'
+                  id='time'
+                  name='time'
                   type='text'
                   className='form-control'
                   onChange={this.onValueChange}
@@ -94,11 +95,11 @@ class FormInput extends React.Component {
               </div>
             </div>
             <div className='form-group row'>
-              <label htmlFor='inputImpression' className='col-sm-2 col-form-label'>Impression</label>
+              <label htmlFor='impression' className='col-sm-2 col-form-label'>Impression</label>
               <div className='col-sm-10'>
                 <input
-                  id='inputImpression'
-                  name='inputImpression'
+                  id='impression'
+                  name='impression'
                   type='text'
                   className='form-control'
                   onChange={this.onValueChange}
