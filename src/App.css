@@ -19,3 +19,16 @@
   top: 0.5rem;
   right: 24rem;
 }
+.topBottom1REM {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.odd {
+  background-color: darkgrey;
+}
+.textAlignLeft {
+  text-align: left;
+}
+.pointer {
+  cursor: pointer;
+}

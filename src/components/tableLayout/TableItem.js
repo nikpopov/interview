@@ -1,33 +1,35 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import classnames from 'classnames';
 
 function TableItem(props) {
-  const { company, project, contactPerson, contactPhone, date, time, impression } = props.interview;
-  console.log(props);
+  const { index, interview, onEditInterviewData } = props;
 
   return (
-    <Fragment>
-      <div className='col-2'>
-        <h6>{company}</h6>
+    <div
+      className={classnames({
+        'row': true,
+        'topBottom1REM': true,
+        'pointer': true,
+        'odd': index % 2 === 1
+      })}
+      onClick={() => onEditInterviewData(interview)}
+    >
+      <div className='col-3 textAlignLeft'>
+        <h6>{interview.company}</h6>
       </div>
-      <div className='col-2'>
-        <h6>{project}</h6>
+      <div className='col-5 textAlignLeft'>
+        <h6>{interview.project}</h6>
       </div>
-      <div className='col-2'>
-        <h6>{contactPerson}</h6>
-      </div>
-      <div className='col-2'>
-        <h6>{contactPhone}</h6>
+      <div className='col-2 textAlignLeft'>
+        <h6>{interview.contactPerson}</h6>
       </div>
       <div className='col-1'>
-        <h6>{date}</h6>
+        <h6>{interview.date}</h6>
       </div>
       <div className='col-1'>
-        <h6>{time}</h6>
+        <h6>{interview.time}</h6>
       </div>
-      <div className='col-2'>
-        <h6>{impression}</h6>
-      </div>
-    </Fragment>
+    </div>
   );
 }
 

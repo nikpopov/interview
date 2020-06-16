@@ -2,12 +2,21 @@ import React from 'react';
 import TableItem from './TableItem';
 
 function TableContent(props) {
-  const { list } = props;
+  const { list, onEditInterviewData } = props;
 
   return (
-    <div className='row cols-12'>
+    <div className='cols-12'>
       {list && list.length > 0
-      ? list.map((interview, key) => <TableItem key={key} interview={interview}/>)
+      ? list.map((interview, i) => {
+        return (
+          <TableItem
+            key={i}
+            index={i}
+            interview={interview}
+            onEditInterviewData={onEditInterviewData}
+          />
+        );
+      })
       : null}
     </div>
   )
