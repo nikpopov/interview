@@ -1,25 +1,22 @@
 import React from 'react';
 
-const FormInput = (props) => {
-  const { onValueChange, record, onSubmitForm } = props;
-  console.log(props);
-
+const ModalBody = (props) => {
+  const { onValueChange, record } = props;
   return (
-    <div className='container'>
+    <div className="modal-body">
       <div className='col-12'>
-        <form>
-          <div className='form-group row'>
-            <label htmlFor='company' className='col-sm-2 col-form-label'>Company</label>
-            <div className='col-sm-10'>
-              <input
-                id='company'
-                name='company'
-                type='text'
-                className='form-control'
-                onChange={onValueChange}
-                value={record.company || ''}
-                />
-            </div>
+        <div className='form-group row'>
+          <label htmlFor='company' className='col-sm-2 col-form-label'>Company</label>
+          <div className='col-sm-10'>
+            <input
+              id='company'
+              name='company'
+              type='text'
+              className='form-control'
+              onChange={onValueChange}
+              value={record.company || ''}
+            />
+          </div>
           </div>
           <div className='form-group row'>
             <label htmlFor='project' className='col-sm-2 col-form-label'>Project Description</label>
@@ -99,29 +96,9 @@ const FormInput = (props) => {
               />
             </div>
           </div>
-          <div className='form-group row'>
-            <div className='col-sm-6'>
-              <button
-                type='submit'
-                className='btn btn-primary'
-              >
-                Cancel
-              </button>
-            </div>
-            <div className='col-sm-6'>
-              <button
-                type='submit'
-                className='btn btn-primary'
-                onClick={onSubmitForm}
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default FormInput;
+export default ModalBody;

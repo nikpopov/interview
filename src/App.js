@@ -3,15 +3,14 @@ import { uuid } from 'uuidv4';
 import './App.css';
 import Header from './components/Header';
 import TableList from './components/tableLayout/TableList';
-import FormInput from './components/FormInput';
 import ButtonAbsolute from './components/ButtonAbsolute';
-
+import Modal from './components/Modal/Modal';
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       list: [],
-      formIsOpen: false,
+      modalIsOpen: false,
       record: {}
     }
   }
@@ -36,32 +35,35 @@ class App extends React.Component {
 
   toggleModal = () => {
     this.setState({
-      formIsOpen: !this.state.formIsOpen
+      modalIsOpen: !this.state.modalIsOpen
     })
   }
 
   appendRecord = (data) => {
     if (data) {
-      debugger;
       let obj = {};
       if (!data.id) {
-        obj = Object.assign({}, data, { id: uuid() })
+        obj = { ...data, ...{id: uuid()}};
       } else {
-        obj = Object.assign({}, data);
+        obj = {...data};
       }
-      if (this.state.list.some(item => item.id.toString() === obj.id.toString())) {
-        const item = this.state.list.find(item => item.id.toString() === obj.id.toString());
-        const index = this.state.list.indexOf(item);
-        const newList = this.state.list.map(item => item);
-        newList.splice(index, 1, obj);
+      let item,
+        index = 0,
+        number = 0,
+        newList = [];
+      if (this.state.list.length && this.state.list.some(item => item.id.toString() === obj.id.toString())) {
+        item = this.state.list.find(item => item.id.toString() === obj.id.toString());
+        index = this.state.list.indexOf(item);
+        newList = this.state.list.map(item => item);
+        number = 1;
+      } else {
+        index = this.state.list.length;
+        newList = [...this.state.list];
+      }
+      newList.splice(index, number, obj);
         this.setState({
           list: newList
         })
-      } else {
-        this.setState({
-          list: this.state.list.push(obj)
-        })
-      }
     }
   }
 
@@ -69,7 +71,7 @@ class App extends React.Component {
     if (data) {
       this.setState({
         record: data,
-        formIsOpen: true
+        modalIsOpen: true
       })
     }
   }
@@ -86,8 +88,18 @@ class App extends React.Component {
     this.appendRecord(this.state.record);
     setTimeout(() => {
       localStorage.setItem('list', JSON.stringify(this.state.list));
-      this.setState({ record: {}})
+      this.setState({
+        record: {},
+        modalIsOpen: false
+      })
     }, 200);
+  }
+
+  closeModal = () => {
+    this.setState({
+      modalIsOpen: false,
+      record: {}
+    });
   }
 
   render() {
@@ -96,17 +108,17 @@ class App extends React.Component {
         <Header />
         <TableList
           list={this.state.list}
-          formIsOpen={this.state.formIsOpen}
+          modalIsOpen={this.state.modalIsOpen}
           onEditInterviewData={this.onEditInterviewData}
         />
-        {this.state.formIsOpen
-        ? <FormInput
-            record={this.state.record}
-            onValueChange={this.onValueChange}
-            onSubmitForm={this.onSubmitForm}
-          />
-        : null}
-        <ButtonAbsolute formIsOpen={this.state.formIsOpen} toggleModal={this.toggleModal}/>
+        <Modal
+          modalIsOpen={this.state.modalIsOpen}
+          closeModal={this.closeModal}
+          onValueChange={this.onValueChange}
+          record={this.state.record}
+          onSubmitForm={this.onSubmitForm}
+        />
+        <ButtonAbsolute modalIsOpen={this.state.modalIsOpen} toggleModal={this.toggleModal}/>
       </div>
     );
   }
