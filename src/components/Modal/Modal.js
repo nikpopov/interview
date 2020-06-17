@@ -9,9 +9,7 @@ const Modal = (props) => {
 
   return (
     <div
-      className={classnames({
-        'fade': true,
-        'modal': true,
+      className={classnames('fade modal beige',{
         'show': modalIsOpen
       })}
       tabIndex="-1"
