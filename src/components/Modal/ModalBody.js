@@ -2,6 +2,7 @@ import React from 'react';
 
 const ModalBody = (props) => {
   const { onValueChange, record } = props;
+
   return (
     <div className="modal-body">
       <div className='col-12'>

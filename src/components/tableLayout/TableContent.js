@@ -1,7 +1,7 @@
 import React from 'react';
 import TableItem from './TableItem';
 
-function TableContent(props) {
+const TableContent = (props) => {
   const { list, onEditInterviewData } = props;
 
   return (

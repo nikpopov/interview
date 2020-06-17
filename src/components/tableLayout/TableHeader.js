@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TableHeader() {
+const TableHeader = () => {
   return (
     <div className='row cols-12'>
       <div className='col-3'>

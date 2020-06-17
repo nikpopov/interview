@@ -2,7 +2,7 @@ import React from 'react';
 import TableHeader from './TableHeader';
 import TableContent from './TableContent';
 
-function TableList(props) {
+const TableList = (props) => {
   const { list, modalIsOpen, onEditInterviewData } = props;
 
   return (

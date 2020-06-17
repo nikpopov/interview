@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-function TableItem(props) {
+const TableItem = (props) => {
   const { index, interview, onEditInterviewData } = props;
 
   return (
