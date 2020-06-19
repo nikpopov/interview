@@ -9,58 +9,77 @@ const ModalBody = (props) => {
       <div className='col-12'>
         <div className='form-group row'>
           <TextInput
-            fieldName={'company'}
-            labelText={'Company'}
+            width={12}
+            fieldName='company'
             onChange={onValueChange}
             value={record.company || ''}
+            placeholder='Company name'
           />
         </div>
         <div className='form-group row'>
           <TextInput
+            width={12}
             fieldName={'project'}
-            labelText={'Project Description'}
             onChange={onValueChange}
             value={record.project || ''}
+            placeholder='Project description'
           />
         </div>
         <div className='form-group row'>
           <TextInput
+            width={6}
             fieldName={'contactPerson'}
-            labelText={'Contact Person'}
             onChange={onValueChange}
             value={record.contactPerson || ''}
+            placeholder='Contact'
           />
-        </div>
-        <div className='form-group row'>
-          <TextInput
+           <TextInput
+            width={6}
             fieldName={'contactPhone'}
-            labelText={'Contact phone'}
             onChange={onValueChange}
             value={record.contactPhone || ''}
+            placeholder='Phone'
           />
         </div>
         <div className='form-group row'>
           <TextInput
+            width={6}
             fieldName={'date'}
-            labelText={'Interview Date'}
             onChange={onValueChange}
             value={record.date || ''}
+            placeholder='Interview date'
           />
-        </div>
-        <div className='form-group row'>
           <TextInput
+            width={6}
             fieldName={'time'}
-            labelText={'Interview Time'}
             onChange={onValueChange}
             value={record.time || ''}
+            placeholder='Interview time'
           />
         </div>
         <div className='form-group row'>
           <TextInput
-            fieldName={'impression'}
-            labelText={'Impression'}
+            width={6}
+            fieldName={'officePlacement'}
             onChange={onValueChange}
             value={record.impression || ''}
+            placeholder='Office placement'
+          />
+          <TextInput
+            width={6}
+            fieldName={'employeeNumber'}
+            onChange={onValueChange}
+            value={record.impression || ''}
+            placeholder='Employee number'
+          />
+        </div>
+        <div className='form-group row'>
+          <TextInput
+            width={12}
+            fieldName={'impression'}
+            onChange={onValueChange}
+            value={record.impression || ''}
+            placeholder='Impression'
           />
         </div>
       </div>

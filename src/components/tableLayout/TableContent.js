@@ -2,7 +2,7 @@ import React from 'react';
 import TableItem from './TableItem';
 
 const TableContent = (props) => {
-  const { list, onEditInterviewData } = props;
+  const { list, onEditInterviewData, onRemoveRecord } = props;
 
   return (
     <div className='cols-12'>
@@ -14,6 +14,7 @@ const TableContent = (props) => {
             index={i}
             interview={interview}
             onEditInterviewData={onEditInterviewData}
+            onRemoveRecord={onRemoveRecord}
           />
         );
       })

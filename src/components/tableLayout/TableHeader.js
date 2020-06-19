@@ -6,7 +6,7 @@ const TableHeader = () => {
       <div className='col-3'>
         <h6>Company</h6>
       </div>
-      <div className='col-5'>
+      <div className='col-4'>
         <h6>Short Project Description</h6>
       </div>
       <div className='col-2'>
@@ -17,6 +17,9 @@ const TableHeader = () => {
       </div>
       <div className='col-1'>
         <h6>Interview Time</h6>
+      </div>
+      <div className='col-1'>
+        Remove record
       </div>
     </div>
   )

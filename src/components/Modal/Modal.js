@@ -19,7 +19,10 @@ const Modal = (props) => {
     >
       <div className="modal-dialog modal-xl">
         <div className="modal-content">
-          <ModalHeader closeModal={closeModal}/>
+          <ModalHeader
+            closeModal={closeModal}
+            title={record.project}
+          />
           <ModalBody
             onValueChange={onValueChange}
             record={record}

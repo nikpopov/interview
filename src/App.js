@@ -51,8 +51,8 @@ class App extends React.Component {
         index = 0,
         number = 0,
         newList = [];
-      if (this.state.list.length && this.state.list.some(item => item.id.toString() === obj.id.toString())) {
-        item = this.state.list.find(item => item.id.toString() === obj.id.toString());
+      if (this.state.list.length && this.state.list.some(item => item.id === obj.id)) {
+        item = this.state.list.find(item => item.id === obj.id);
         index = this.state.list.indexOf(item);
         newList = this.state.list.map(item => item);
         number = 1;
@@ -102,6 +102,15 @@ class App extends React.Component {
     });
   }
 
+  onRemoveRecord = (record) => {
+    const newList = this.state.list.filter(item => item.id !== record.id);
+    console.log(newList);
+    this.setState({
+      list: newList
+    });
+    localStorage.setItem('list', JSON.stringify(newList));
+  }
+
   render() {
     return (
       <div className="App">
@@ -110,6 +119,7 @@ class App extends React.Component {
           list={this.state.list}
           modalIsOpen={this.state.modalIsOpen}
           onEditInterviewData={this.onEditInterviewData}
+          onRemoveRecord={this.onRemoveRecord}
         />
         <Modal
           modalIsOpen={this.state.modalIsOpen}

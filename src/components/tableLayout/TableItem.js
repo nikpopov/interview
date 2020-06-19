@@ -2,22 +2,27 @@ import React from 'react';
 import classnames from 'classnames';
 
 const TableItem = (props) => {
-  const { index, interview, onEditInterviewData } = props;
+  const { index, interview, onEditInterviewData, onRemoveRecord } = props;
 
   return (
     <div
       className={classnames({
         'row': true,
         'topBottom1REM': true,
-        'pointer': true,
         'odd': index % 2 === 1
       })}
-      onClick={() => onEditInterviewData(interview)}
     >
-      <div className='col-3 textAlignLeft'>
+      <div
+        className='col-3 textAlignLeft pointer'
+        title="Show all company's projects"
+      >
         <h6>{interview.company}</h6>
       </div>
-      <div className='col-5 textAlignLeft'>
+      <div
+        className='col-4 textAlignLeft pointer'
+        onClick={() => onEditInterviewData(interview)}
+        title='Show & Edit Project details'
+      >
         <h6>{interview.project}</h6>
       </div>
       <div className='col-2 textAlignLeft'>
@@ -28,6 +33,14 @@ const TableItem = (props) => {
       </div>
       <div className='col-1'>
         <h6>{interview.time}</h6>
+      </div>
+      <div>
+        <button
+          className='btn btn-secondary'
+          onClick={() => onRemoveRecord(interview)}
+        >
+          Remove
+        </button>
       </div>
     </div>
   );
