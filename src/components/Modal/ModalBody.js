@@ -62,14 +62,14 @@ const ModalBody = (props) => {
             width={6}
             fieldName={'officePlacement'}
             onChange={onValueChange}
-            value={record.impression || ''}
+            value={record.officePlacement || ''}
             placeholder='Office placement'
           />
           <TextInput
             width={6}
             fieldName={'employeeNumber'}
             onChange={onValueChange}
-            value={record.impression || ''}
+            value={record.employeeNumber || ''}
             placeholder='Employee number'
           />
         </div>
