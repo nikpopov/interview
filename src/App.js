@@ -24,19 +24,36 @@ class App extends React.Component {
 
   componentUnMount() {
     if (this.state.list.length > 0) {
-      localStorage.setItem('list', JSON.stringify(this.state.list));
+      this.updateStorage(this.state.list)
       this.setState({
         list: []
       })
     } else {
-      localStorage.setItem('list', JSON.stringify([]));
+      this.updateStorage([])
     }
+  }
+
+  validateData(item) {
+    //TODO Make validation if any prop = null or undefined or empty
+    return item;
+  }
+
+  updateStorage(item) {
+    const data = this.validateData(item);
+    localStorage.setItem('list', JSON.stringify(data));
   }
 
   toggleModal = () => {
     this.setState({
       modalIsOpen: !this.state.modalIsOpen
     })
+  }
+
+  onCloseModal = () => {
+    this.setState({
+      modalIsOpen: false,
+      record: {}
+    });
   }
 
   appendRecord = (data) => {
@@ -67,7 +84,15 @@ class App extends React.Component {
     }
   }
 
-  onEditInterviewData = (data) => {
+  onRemoveRecord = (record) => {
+    const newList = this.state.list.filter(item => item.id !== record.id);
+    this.setState({
+      list: newList
+    });
+    this.updateStorage(this.state.list);
+  }
+
+  onEditCompanyData = (data) => {
     if (data) {
       this.setState({
         record: data,
@@ -76,39 +101,46 @@ class App extends React.Component {
     }
   }
 
-  onValueChange = (e) => {
+  onAddInterview = () => {
+    const interview = [{
+      type: '',
+      date: '',
+      time: '',
+      interviewer: '',
+      contact: ''
+    }];
+    const interviewList = this.state.record.interviewList ? this.state.record.interviewList.map(item => item) : [];
+    this.setState({
+      record: {...this.state.record, ...{interviewList: interviewList.concat(interview) }},
+    })
+  }
+
+  onValueChange = (e, index = null) => {
     const name = e.target.name;
     const value = e.target.value;
-    this.setState({
-      record: Object.assign({}, this.state.record, {[name]: value})
-    });
+    if (index === null) {
+      this.setState({
+        record: Object.assign({}, this.state.record, {[name]: value})
+      });
+    } else {
+      const el = {...this.state.record.interviewList[index], ...{[name] : value}};
+      const updatedList = this.state.record.interviewList.map(item => item);
+      updatedList.splice(index, 1, el);
+      this.setState({
+        record: {...this.state.record, ...{interviewList: updatedList}}
+      })
+    }
   }
 
   onSubmitForm = () => {
     this.appendRecord(this.state.record);
     setTimeout(() => {
-      localStorage.setItem('list', JSON.stringify(this.state.list));
+      this.updateStorage(this.state.list);
       this.setState({
         record: {},
         modalIsOpen: false
       })
     }, 200);
-  }
-
-  closeModal = () => {
-    this.setState({
-      modalIsOpen: false,
-      record: {}
-    });
-  }
-
-  onRemoveRecord = (record) => {
-    const newList = this.state.list.filter(item => item.id !== record.id);
-    console.log(newList);
-    this.setState({
-      list: newList
-    });
-    localStorage.setItem('list', JSON.stringify(newList));
   }
 
   render() {
@@ -118,17 +150,21 @@ class App extends React.Component {
         <TableList
           list={this.state.list}
           modalIsOpen={this.state.modalIsOpen}
-          onEditInterviewData={this.onEditInterviewData}
+          onEditCompanyData={this.onEditCompanyData}
           onRemoveRecord={this.onRemoveRecord}
         />
         <Modal
           modalIsOpen={this.state.modalIsOpen}
-          closeModal={this.closeModal}
+          onCloseModal={this.onCloseModal}
           onValueChange={this.onValueChange}
           record={this.state.record}
           onSubmitForm={this.onSubmitForm}
+          onAddInterview={this.onAddInterview}
         />
-        <ButtonAbsolute modalIsOpen={this.state.modalIsOpen} toggleModal={this.toggleModal}/>
+        <ButtonAbsolute
+          modalIsOpen={this.state.modalIsOpen}
+          toggleModal={this.toggleModal}
+        />
       </div>
     );
   }

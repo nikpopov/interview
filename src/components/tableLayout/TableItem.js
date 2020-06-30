@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 const TableItem = (props) => {
-  const { index, interview, onEditInterviewData, onRemoveRecord } = props;
+  const { index, interview, onEditCompanyData, onRemoveRecord } = props;
 
   return (
     <div
@@ -20,7 +20,7 @@ const TableItem = (props) => {
       </div>
       <div
         className='col-4 textAlignLeft pointer'
-        onClick={() => onEditInterviewData(interview)}
+        onClick={() => onEditCompanyData(interview)}
         title='Show & Edit Project details'
       >
         <h6>{interview.project}</h6>

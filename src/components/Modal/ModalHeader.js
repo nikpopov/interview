@@ -1,20 +1,28 @@
 import React from 'react';
 
 const ModalHeader = (props) => {
-  const { closeModal, title } = props;
+  const { onCloseModal, title, onSubmitForm } = props;
 
   return (
     <div className="modal-header">
       <h5 className="modal-title">{title}</h5>
-      <button
-        type="button"
-        className="close"
-        data-dismiss="modal"
-        aria-label="Close"
-        onClick={closeModal}
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <div className='modalButtons'>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          data-dismiss="modal"
+          onClick={onCloseModal}
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={onSubmitForm}
+        >
+          Save changes
+        </button>
+      </div>
     </div>
   );
 }

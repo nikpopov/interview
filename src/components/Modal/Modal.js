@@ -2,10 +2,10 @@ import React from 'react';
 import classnames from 'classnames';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
-import ModalFooter from './ModalFooter';
+import './modal.css'
 
 const Modal = (props) => {
-  const { modalIsOpen, closeModal, onValueChange, record, onSubmitForm } = props;
+  const { record, modalIsOpen, onCloseModal, onValueChange, onSubmitForm, onAddInterview } = props;
 
   return (
     <div
@@ -20,16 +20,14 @@ const Modal = (props) => {
       <div className="modal-dialog modal-xl">
         <div className="modal-content">
           <ModalHeader
-            closeModal={closeModal}
+            onCloseModal={onCloseModal}
+            onSubmitForm={onSubmitForm}
             title={record.project}
           />
           <ModalBody
             onValueChange={onValueChange}
+            onAddInterview={onAddInterview}
             record={record}
-          />
-          <ModalFooter
-            closeModal={closeModal}
-            onSubmitForm={onSubmitForm}
           />
         </div>
       </div>

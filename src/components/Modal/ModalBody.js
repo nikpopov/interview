@@ -1,30 +1,32 @@
 import React from 'react';
 import TextInput from '../formComponents/TextInput';
+import GeneralInfoBlock from '../blockComponents/GeneralInfoBlock';
+import InterviewList from '../blockComponents/InterviewList';
 
 const ModalBody = (props) => {
-  const { onValueChange, record } = props;
+  const { record, onValueChange, onAddInterview } = props;
 
   return (
     <div className="modal-body">
       <div className='col-12'>
-        <div className='form-group row'>
-          <TextInput
-            width={12}
-            fieldName='company'
-            onChange={onValueChange}
-            value={record.company || ''}
-            placeholder='Company name'
-          />
+        <GeneralInfoBlock
+          record={record}
+          onValueChange={onValueChange}
+        />
+        <InterviewList
+          record={record}
+          onValueChange={onValueChange}
+
+        />
+        <div className='setUpInterviewBtnWrapper'>
+          <button
+            className='btn btn-primary setUpInterviewBtn'
+            onClick={() => onAddInterview()}
+          >
+            Set Up New Interview
+          </button>
         </div>
-        <div className='form-group row'>
-          <TextInput
-            width={12}
-            fieldName={'project'}
-            onChange={onValueChange}
-            value={record.project || ''}
-            placeholder='Project description'
-          />
-        </div>
+
         <div className='form-group row'>
           <TextInput
             width={6}
@@ -55,22 +57,6 @@ const ModalBody = (props) => {
             onChange={onValueChange}
             value={record.time || ''}
             placeholder='Interview time'
-          />
-        </div>
-        <div className='form-group row'>
-          <TextInput
-            width={6}
-            fieldName={'officePlacement'}
-            onChange={onValueChange}
-            value={record.officePlacement || ''}
-            placeholder='Office placement'
-          />
-          <TextInput
-            width={6}
-            fieldName={'employeeNumber'}
-            onChange={onValueChange}
-            value={record.employeeNumber || ''}
-            placeholder='Employee number'
           />
         </div>
         <div className='form-group row'>
