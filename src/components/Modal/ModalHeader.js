@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ModalHeader = (props) => {
-  const { onCloseModal, title, onSubmitForm } = props;
+  const { onCloseModal, title, onSubmitForm, changed } = props;
 
   return (
     <div className="modal-header">
@@ -18,6 +18,7 @@ const ModalHeader = (props) => {
         <button
           type="button"
           className="btn btn-primary"
+          disabled={!changed}
           onClick={onSubmitForm}
         >
           Save changes

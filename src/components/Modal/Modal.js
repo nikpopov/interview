@@ -5,7 +5,9 @@ import ModalBody from './ModalBody';
 import './modal.css'
 
 const Modal = (props) => {
-  const { record, modalIsOpen, onCloseModal, onValueChange, onSubmitForm, onAddInterview } = props;
+  const {
+    record, modalIsOpen, onCloseModal, onValueChange, onSubmitForm, onAddInterview, changed
+  } = props;
 
   return (
     <div
@@ -23,6 +25,7 @@ const Modal = (props) => {
             onCloseModal={onCloseModal}
             onSubmitForm={onSubmitForm}
             title={record.project}
+            changed={changed}
           />
           <ModalBody
             onValueChange={onValueChange}

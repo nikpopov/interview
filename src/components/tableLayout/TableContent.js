@@ -2,12 +2,12 @@ import React from 'react';
 import TableItem from './TableItem';
 
 const TableContent = (props) => {
-  const { list, onEditCompanyData, onRemoveRecord } = props;
+  const { recordList, onEditCompanyData, onRemoveRecord } = props;
 
   return (
     <div className='cols-12'>
-      {list && list.length > 0
-      ? list.map((interview, i) => {
+      {recordList && recordList.length > 0
+      ? recordList.map((interview, i) => {
         return (
           <TableItem
             key={i}

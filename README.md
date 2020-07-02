@@ -25,5 +25,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
-
-This project was developed for IT people (not only) who are lloking for a new job and receive a lot of proposition. Do not allow people forget details about companies and projects and make a right chiove when select desired project to employ for.
+This project started as a simple notepad for keeping in mind impressions of past interviews.
+Do not allow people forget details about companies and projects and make a right choice when select desired project to employ for.
+Later the project has being transformed into CRM with the same functionality.

@@ -9,24 +9,25 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
+      recordList: [],
       modalIsOpen: false,
-      record: {}
+      record: {},
+      changed: false
     }
   }
 
   componentDidMount() {
-    const list = localStorage.getItem('list') && JSON.parse(localStorage.getItem('list'));
+    const recordList = localStorage.getItem('list') && JSON.parse(localStorage.getItem('list'));
     this.setState({
-      list: list ? list : []
+      recordList: recordList ? recordList : []
     })
   }
 
   componentUnMount() {
-    if (this.state.list.length > 0) {
-      this.updateStorage(this.state.list)
+    if (this.state.recordList.length > 0) {
+      this.updateStorage(this.state.recordList)
       this.setState({
-        list: []
+        recordList: []
       })
     } else {
       this.updateStorage([])
@@ -52,7 +53,8 @@ class App extends React.Component {
   onCloseModal = () => {
     this.setState({
       modalIsOpen: false,
-      record: {}
+      record: {},
+      changed: false
     });
   }
 
@@ -68,28 +70,28 @@ class App extends React.Component {
         index = 0,
         number = 0,
         newList = [];
-      if (this.state.list.length && this.state.list.some(item => item.id === obj.id)) {
-        item = this.state.list.find(item => item.id === obj.id);
-        index = this.state.list.indexOf(item);
-        newList = this.state.list.map(item => item);
+      if (this.state.recordList.length && this.state.recordList.some(item => item.id === obj.id)) {
+        item = this.state.recordList.find(item => item.id === obj.id);
+        index = this.state.recordList.indexOf(item);
+        newList = this.state.recordList.map(item => item);
         number = 1;
       } else {
-        index = this.state.list.length;
-        newList = [...this.state.list];
+        index = this.state.recordList.length;
+        newList = [...this.state.recordList];
       }
       newList.splice(index, number, obj);
         this.setState({
-          list: newList
+          recordList: newList
         })
     }
   }
 
   onRemoveRecord = (record) => {
-    const newList = this.state.list.filter(item => item.id !== record.id);
+    const newList = this.state.recordList.filter(item => item.id !== record.id);
     this.setState({
-      list: newList
+      recordList: newList
     });
-    this.updateStorage(this.state.list);
+    this.updateStorage(this.state.recordList);
   }
 
   onEditCompanyData = (data) => {
@@ -130,12 +132,15 @@ class App extends React.Component {
         record: {...this.state.record, ...{interviewList: updatedList}}
       })
     }
+    this.setState({
+      changed: true
+    })
   }
 
   onSubmitForm = () => {
     this.appendRecord(this.state.record);
     setTimeout(() => {
-      this.updateStorage(this.state.list);
+      this.updateStorage(this.state.recordList);
       this.setState({
         record: {},
         modalIsOpen: false
@@ -148,7 +153,7 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <TableList
-          list={this.state.list}
+          recordList={this.state.recordList}
           modalIsOpen={this.state.modalIsOpen}
           onEditCompanyData={this.onEditCompanyData}
           onRemoveRecord={this.onRemoveRecord}
@@ -160,6 +165,7 @@ class App extends React.Component {
           record={this.state.record}
           onSubmitForm={this.onSubmitForm}
           onAddInterview={this.onAddInterview}
+          changed={this.state.changed}
         />
         <ButtonAbsolute
           modalIsOpen={this.state.modalIsOpen}

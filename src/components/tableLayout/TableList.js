@@ -3,13 +3,13 @@ import TableHeader from './TableHeader';
 import TableContent from './TableContent';
 
 const TableList = (props) => {
-  const { list, modalIsOpen, onEditCompanyData, onRemoveRecord } = props;
+  const { recordList, modalIsOpen, onEditCompanyData, onRemoveRecord } = props;
 
   return (
     <div className='container fluid'>
       <TableHeader />
-      {list && list.length
-      ? <TableContent list={list} onEditCompanyData={onEditCompanyData} onRemoveRecord={onRemoveRecord} />
+      {recordList && recordList.length
+      ? <TableContent recordList={recordList} onEditCompanyData={onEditCompanyData} onRemoveRecord={onRemoveRecord} />
       : !modalIsOpen && <div className='col-12'>There is no any data in your database</div>
       }
     </div>
